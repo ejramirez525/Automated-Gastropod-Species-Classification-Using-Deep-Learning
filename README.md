@@ -36,56 +36,70 @@ This project automates the taxonomic classification of marine gastropods using d
 
 <div align="justify">
 
-This guide provides step-by-step instructions to set up the YOLOv8 gastropod classification environment. While the system is developed for Edge AI deployment on a Raspberry Pi 4 Model B, these instructions are fully compatible across Windows, macOS, and Linux environments.
+This guide outlines step-by-step procedures for setting up the YOLOv8-based gastropod classification environment. The system is designed for Edge AI deployment on a Raspberry Pi 4 Model B.
 </div>
 
-1. Open your terminal or command prompt.
-
-2. Navigate to your desired directory.
+1. System Requirements
+* **Hardware**
+    * Raspberry Pi 4 Model B (4GB or 8GB recommended)
+    * MicroSD (32GB+)
+    * Camera Module (for live detection)
+* **Operating System**
+    * Raspberry Pi OS (64-bit)
     ```bash
-    cd /path/to/your/desired/directory
+    sudo apt update && sudo apt upgrade -y
     ```
-3. Clone the repository.
+2. Install System Dependencies
+    ```bash
+    sudo apt update
+    sudo apt install -y \
+    python3-venv python3-pip git \
+    libatlas-base-dev libjpeg-dev zlib1g-dev \
+    libopenblas-dev libblas-dev liblapack-dev \
+    gfortran
+    ```
+3. Clone the Repository.
     ```bash
     git clone https://github.com/ejramirez525/automated-gastropod-species-classification-using-deep-learning.git
+    cd automated-gastropod-species-classification-using-deep-learning
     ```
-4. Change to the cloned repository's directory.
+4. Create Virtual Environment.
     ```bash
-    cd Automated-Gastropod-Species-Classification-Using-Deep-Learning
+    python3 -m venv yolov8-env
+    source yolov8-env/bin/activate
+    pip install --upgrade pip
     ```
-5. Create a virtual environment.
-    - **For Windows:**
-        ```bash
-        python -m venv venv
-        ```
-    - **For macOS and Raspberry Pi (Linux):**
-        ```bash
-        python3 -m venv venv
-        ```
-6. Activate the virtual environment.
-    - **For Windows (Command Prompt):**
-        ```bash
-        venv\Scripts\activate
-        ```
-    - **For Windows (PowerShell):**
-        ```bash
-        .\venv\Scripts\Activate.ps1
-        ```
-    - **For macOS and Raspberry Pi (Linux):**
-        ```bash
-        source venv/bin/activate
-        ```
-7. Install the required dependencies.
-
-    > **NOTE:** Ensure your virtual environment is active, then install the required packages.
+5. Project Files Needed.
+    * Make sure you have:
+    ```
+    ScientificName.pt
+    Gastropod_Classification.py
+    ```
+    * Example structure:
+    ```
+    models\ScientificName.pt
+    Gastropod_Classification.py
+    requirements.txt
+    ```
+6. Install the required dependencies.
     ```bash
     pip install -r requirements.txt
     ```
-8. Run the software
+7. Pi Camera Setup.
+    * Enable camera interface:
+    ```
+    sudo raspi-config
+    ```
+    * Go to: `Interface Options` → `Camera` → `Enable`
+    * Install camera library:
+    ```bash
+    pip install picamera2
+    ```
+8. Running the Application.
     ```bash
     python Gastropod_Classification.py
     ```
-
+<br>
 
 ## 🏆 Research Output
 

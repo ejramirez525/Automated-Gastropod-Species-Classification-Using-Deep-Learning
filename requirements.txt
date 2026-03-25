@@ -1,6 +1,7 @@
-ultralytics==8.0.196
-torch==2.5.1
-torchvision==0.20.1
-torchaudio==2.5.1
-opencv-python==4.8.1.78
-numpy==1.26.4
+torch==1.13.1
+torchvision==0.14.1
+ultralytics==8.0.100
+numpy==1.23.5
+opencv-python-headless
+pillow
+matplotlib
